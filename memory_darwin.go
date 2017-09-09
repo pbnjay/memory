@@ -1,3 +1,5 @@
+// +build darwin
+
 package memory
 
 import (
@@ -6,7 +8,7 @@ import (
 )
 
 // TotalMemory returns the total system memory in bytes, or 0 if
-// available memory could not be determined.
+// installed memory size could not be determined.
 func TotalMemory() uint64 {
 	// FIXME: there is no 64bit version like this:
 	//s, err := syscall.SysctlUint64("hw.memsize")
