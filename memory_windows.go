@@ -16,8 +16,8 @@ var (
 // installed memory size could not be determined.
 func TotalMemory() uint64 {
 	var totalKB uint64
-	r, _, err := getPhysicallyInstalledSystemMemory.Call(uintptr(unsafe.Pointer(&totalKB)))
-	if r == 0 || err != nil {
+	r, _, _ := getPhysicallyInstalledSystemMemory.Call(uintptr(unsafe.Pointer(&totalKB)))
+	if r == 0 {
 		return 0
 	}
 	return totalKB * 1024
