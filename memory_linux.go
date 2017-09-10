@@ -1,5 +1,4 @@
 // +build linux
-// +build !386,!mips,!mipsle,!arm
 
 package memory
 
@@ -13,5 +12,7 @@ func TotalMemory() uint64 {
 	if err != nil {
 		return 0
 	}
-	return in.Totalram
+	// If this is a 32-bit system, then this is uint32 (max 4GB)
+	// So we convert to uint64 to match signature.
+	return uint64(in.Totalram)
 }
