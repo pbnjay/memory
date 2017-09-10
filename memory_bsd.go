@@ -1,5 +1,5 @@
-// +build netbsd openbsd
-// +build amd64
+// +build freebsd openbsd dragonfly netbsd
+// +build 386 amd64 arm
 
 package memory
 
@@ -12,9 +12,9 @@ import (
 // installed memory size could not be determined.
 func TotalMemory() uint64 {
 	// FIXME: there is no 64bit version like this:
-	//s, err := syscall.SysctlUint64("hw.physmem64")
+	//s, err := syscall.SysctlUint64("hw.physmem")
 
-	s, err := syscall.Sysctl("hw.physmem64")
+	s, err := syscall.Sysctl("hw.physmem")
 	if err != nil {
 		return 0
 	}

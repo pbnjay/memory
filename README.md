@@ -11,5 +11,11 @@ Tested/working on:
  - Windows 10 1511 (10586.1045)
  - Linux RHEL (3.10.0-327.3.1.el7.x86_64)
 
-If you have access to 32bit or BSD systems please
+Tested on virtual machines:
+ - NetBSD 7.1 amd64 + 386
+ - OpenBSD 6.1 amd64 + 386
+ - FreeBSD 11.1 amd64 + 386
+ - DragonFly BSD 4.8.1 amd64
+
+If you have access to untested systems (notably arm) please
 test and file bugs if necessary.
