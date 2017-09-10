@@ -1,5 +1,5 @@
 // +build linux
-// +build !386,!mips,!mipsle,!arm
+// +build 386 mips mipsle arm
 
 package memory
 
@@ -13,5 +13,6 @@ func TotalMemory() uint64 {
 	if err != nil {
 		return 0
 	}
-	return in.Totalram
+	// This is a 32-bit system so 4GB max, but API needs uint64.
+	return uint64(in.Totalram)
 }

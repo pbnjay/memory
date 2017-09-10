@@ -1,5 +1,5 @@
-// +build darwin
-// +build amd64 arm64
+// +build freebsd dragonfly
+// +build amd64
 
 package memory
 
@@ -12,9 +12,9 @@ import (
 // installed memory size could not be determined.
 func TotalMemory() uint64 {
 	// FIXME: there is no 64bit version like this:
-	//s, err := syscall.SysctlUint64("hw.memsize")
+	//s, err := syscall.SysctlUint64("hw.physmem")
 
-	s, err := syscall.Sysctl("hw.memsize")
+	s, err := syscall.Sysctl("hw.physmem")
 	if err != nil {
 		return 0
 	}
