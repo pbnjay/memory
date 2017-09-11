@@ -3,8 +3,8 @@
 package memory
 
 import (
-	"encoding/binary"
 	"syscall"
+	"unsafe"
 )
 
 func sysctlUint64(name string) (uint64, error) {
@@ -12,10 +12,10 @@ func sysctlUint64(name string) (uint64, error) {
 	if err != nil {
 		return 0, err
 	}
-	// hack because the string conversion above drops \0
+	// hack because the string conversion above drops a \0
 	b := []byte(s)
-	for len(b) < 8 {
+	if len(b) < 8 {
 		b = append(b, 0)
 	}
-	return binary.LittleEndian.Uint64(b), nil
+	return *(*uint64)(unsafe.Pointer(&b[0])), nil
 }
