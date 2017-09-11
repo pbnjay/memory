@@ -1,10 +1,23 @@
-# memory (WIP)
+# memory
 
-Provides a simple cross-platform function 
-`func memory.TotalMemory() uint64` that returns the
-total bytes of system memory installed in a system:
+Package memory provides a single method reporting total system memory
+accessible to user code. This value can be used to keep code from thrashing or swapping.
 
-See https://github.com/golang/go/issues/21816 for some justification.
+Ideally this would be provided by the stdlib (similar to `runtime.NumCPU`) - Feedback on the proposal is welcome at: https://github.com/golang/go/issues/21816
+
+## `func TotalMemory() uint64`
+
+TotalMemory returns the total accessible system memory in bytes. Note
+that accessible memory is total installed physical memory size, minus
+reserved areas for the kernel and hardware (if such reservations are
+reported by the operating system).
+
+Unlike Available memory, this value is stable during program execution
+and does not take into account memory used by other processes.
+
+If accessible memory size could not be determined, then 0 is returned.
+
+## Testing
 
 Tested/working on:
  - macOS 10.12.6 (16G29)

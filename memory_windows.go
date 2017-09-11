@@ -16,13 +16,13 @@ type memStatusEx struct {
 	unused       [6]uint64
 }
 
-// TotalMemory returns the total system memory in bytes, or 0 if
-// installed memory size could not be determined.
-func TotalMemory() uint64 {
+func sysTotalMemory() uint64 {
 	kernel32, err := syscall.LoadDLL("kernel32.dll")
 	if err != nil {
 		return 0
 	}
+	// GetPhysicallyInstalledSystemMemory is simpler, but broken on
+	// older versions of windows (and uses this under the hood anyway).
 	globalMemoryStatusEx, err := kernel32.FindProc("GlobalMemoryStatusEx")
 	if err != nil {
 		return 0
