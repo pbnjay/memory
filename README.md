@@ -12,6 +12,8 @@ Tested/working on:
  - Linux RHEL (3.10.0-327.3.1.el7.x86_64)
 
 Tested on virtual machines:
+ - Windows 7 SP1 386
+ - Debian stretch 386
  - NetBSD 7.1 amd64 + 386
  - OpenBSD 6.1 amd64 + 386
  - FreeBSD 11.1 amd64 + 386
