@@ -1,22 +1,21 @@
 # memory
 
 Package `memory` provides a single method reporting total physical system memory
-accessible to the kernel.
+accessible to the kernel. It does not account for memory used by other processes.
 
 This package has no external dependency beside the standard library.
 
 Documentation:
 [![GoDoc](https://godoc.org/github.com/pbnjay/memory?status.svg)](https://godoc.org/github.com/pbnjay/memory)
 
-Ideally this would be provided by the stdlib (similar to `runtime.NumCPU`) -
-Feedback on the proposal is welcome at:
-https://github.com/golang/go/issues/21816
+This is useful for dynamic code to minimize thrashing and other contention, similar to the stdlib `runtime.NumCPU`
+See some history of the proposal at https://github.com/golang/go/issues/21816
 
 
 ## Example
 
 ```go
-fmt.Printf("Total system memory: %s\n", memory.TotalMemory())
+fmt.Printf("Total system memory: %d\n", memory.TotalMemory())
 ```
 
 
