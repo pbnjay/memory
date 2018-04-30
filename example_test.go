@@ -7,5 +7,5 @@ import (
 )
 
 func ExampleTotalMemory() {
-	fmt.Printf("Total system memory: %s\n", memory.TotalMemory())
+	fmt.Printf("Total system memory: %d\n", memory.TotalMemory())
 }
