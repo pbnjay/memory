@@ -1,21 +1,24 @@
 # memory
 
-Package memory provides a single method reporting total system memory
-accessible to user code. This value can be used to keep code from thrashing or swapping.
+Package `memory` provides a single method reporting total physical system memory
+accessible to the kernel.
 
-Ideally this would be provided by the stdlib (similar to `runtime.NumCPU`) - Feedback on the proposal is welcome at: https://github.com/golang/go/issues/21816
+This package has no external dependency beside the standard library.
 
-## `func TotalMemory() uint64`
+Documentation:
+[![GoDoc](https://godoc.org/github.com/pbnjay/memory?status.svg)](https://godoc.org/github.com/pbnjay/memory)
 
-TotalMemory returns the total accessible system memory in bytes. Note
-that accessible memory is total installed physical memory size, minus
-reserved areas for the kernel and hardware (if such reservations are
-reported by the operating system).
+Ideally this would be provided by the stdlib (similar to `runtime.NumCPU`) -
+Feedback on the proposal is welcome at:
+https://github.com/golang/go/issues/21816
 
-Unlike Available memory, this value is stable during program execution
-and does not take into account memory used by other processes.
 
-If accessible memory size could not be determined, then 0 is returned.
+## Example
+
+```go
+fmt.Printf("Total system memory: %s\n", memory.TotalMemory())
+```
+
 
 ## Testing
 
@@ -23,6 +26,8 @@ Tested/working on:
  - macOS 10.12.6 (16G29)
  - Windows 10 1511 (10586.1045)
  - Linux RHEL (3.10.0-327.3.1.el7.x86_64)
+ - Raspberry Pi 3 (ARMv8) on Raspbian, ODROID-C1+ (ARMv7) on Ubuntu, C.H.I.P
+   (ARMv7).
 
 Tested on virtual machines:
  - Windows 7 SP1 386
