@@ -1,3 +1,4 @@
+//go:build windows
 // +build windows
 
 package memory
@@ -57,4 +58,8 @@ func sysFreeMemory() uint64 {
 		return 0
 	}
 	return msx.ullAvailPhys
+}
+
+func sysAvailableMemory() uint64 {
+	return sysFreeMemory()
 }
