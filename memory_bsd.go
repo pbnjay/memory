@@ -1,3 +1,4 @@
+//go:build freebsd || openbsd || dragonfly || netbsd
 // +build freebsd openbsd dragonfly netbsd
 
 package memory
@@ -16,4 +17,8 @@ func sysFreeMemory() uint64 {
 		return 0
 	}
 	return s
+}
+
+func sysAvailableMemory() uint64 {
+	return sysFreeMemory()
 }

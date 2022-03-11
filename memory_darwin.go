@@ -1,3 +1,4 @@
+//go:build darwin
 // +build darwin
 
 package memory
@@ -46,4 +47,8 @@ func sysFreeMemory() uint64 {
 		}
 	}
 	return freePages * pageSize
+}
+
+func sysAvailableMemory() uint64 {
+	return sysFreeMemory()
 }
